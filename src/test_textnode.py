@@ -13,7 +13,7 @@ class TestTextNode(unittest.TestCase):
         self.assertNotEqual(node, node2)
 
     def test_url(self):
-        node = TextNode("This is a text node", TextType.ANCHOR, url="https://example.com")
+        node = TextNode("This is a text node", TextType.LINK, url="https://example.com")
         self.assertEqual(node.url, "https://example.com")
 
     def test_difftype(self):
