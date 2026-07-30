@@ -1,0 +1,57 @@
+import unittest
+from markdown_blocks import block_to_block_type, BlockType
+
+def test_paragraph_block(self):
+    block = "This is a paragraph."
+    self.assertEqual(block_to_block_type(block), BlockType.PARAGRAPH)
+
+def test_heading_block(self):
+    block = "## This is a heading"
+    self.assertEqual(block_to_block_type(block), BlockType.HEADING)
+
+def test_code_block(self):
+    block = "```\nprint('Hello, World!')\n```"
+    self.assertEqual(block_to_block_type(block), BlockType.CODE)
+
+def test_quote_block(self):
+    block = "> This is a quote.\n> It can span multiple lines."
+    self.assertEqual(block_to_block_type(block), BlockType.QUOTE)
+
+def test_unordered_list_block(self):
+    block = "- Item 1\n- Item 2\n- Item 3"
+    self.assertEqual(block_to_block_type(block), BlockType.UNORDERED_LIST)
+
+def test_ordered_list_block(self):
+    block = "1. First item\n2. Second item\n3. Third item"
+    self.assertEqual(block_to_block_type(block), BlockType.ORDERED_LIST)
+
+def test_seven_heading_block(self):
+    block = "####### This is a heading"
+    self.assertEqual(block_to_block_type(block), BlockType.PARAGRAPH) 
+     # Not a valid heading, should be treated as paragraph
+
+def test_invalid_code_block(self):
+    block = "```\nprint('Hello, World!')\n"
+    self.assertEqual(block_to_block_type(block), BlockType.PARAGRAPH) 
+     # Not a valid code block, should be treated as paragraph
+
+def test_broken_quote_block(self):
+    block = "> This is a quote.\nThis line is not part of the quote."
+    self.assertEqual(block_to_block_type(block), BlockType.PARAGRAPH) 
+     # Not a valid quote, should be treated as paragraph
+
+def test_broken_unordered_list_block(self):
+    block = "- Item 1\nItem 2\n- Item 3"
+    self.assertEqual(block_to_block_type(block), BlockType.PARAGRAPH) 
+     # Not a valid unordered list, should be treated as paragraph
+
+def test_broken_ordered_list_block(self):
+    block = "1. First item\n2. Second item\nThird item"
+    self.assertEqual(block_to_block_type(block), BlockType.PARAGRAPH) 
+     # Not a valid ordered list, should be treated as paragraph
+
+def test_multiline_paragraph_block(self):
+    block = "This is a paragraph.\nIt can span multiple lines."
+    self.assertEqual(block_to_block_type(block), BlockType.PARAGRAPH) 
+     # Should be treated as a paragraph
+     
