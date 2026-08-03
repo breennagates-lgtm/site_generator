@@ -8,9 +8,9 @@ def copy_contents_of_directory(source_dir, destination_dir):
         os.mkdir(destination_dir)
 
 
-    list= os.listdir(source_dir)
+    items= os.listdir(source_dir)
 
-    for item in list:
+    for item in items:
         src_path = os.path.join(source_dir, item)
         dest_path = os.path.join(destination_dir, item)
         if os.path.isdir(src_path):

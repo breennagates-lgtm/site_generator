@@ -69,9 +69,9 @@ def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
             new_nodes.append(old_node)
             continue
         original_text = old_node.text
-        for ink_text, link_url in links:
+        for link_text, link_url in links:
             sections = original_text.split(f"[{link_text}]({link_url})", 1)
-            link_node= TextNode(ink_text, TextType.LINK, link_url)
+            link_node= TextNode(link_text, TextType.LINK, link_url)
             if sections[0] != "":
                 new_nodes.append(TextNode(sections[0], TextType.PLAIN))
             new_nodes.append(link_node)

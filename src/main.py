@@ -1,6 +1,7 @@
 from textnode import TextNode, TextType
 from copy_contents import copy_contents_of_directory
 import shutil
+from generate_page import generate_pages_recursive
 import os
 
 def main():
@@ -14,13 +15,17 @@ def main():
     source_dir = "./static"
     destination_dir = "./public" 
 
+    #deleting public directory if it exists
     if os.path.exists(destination_dir):
+        print(f"Deleting '{destination_dir}' directory")
         shutil.rmtree(destination_dir)
-    os.mkdir(destination_dir)
+   
 
-
+    #copy everythign recursively
+    print(f"Copying files from'{source_dir}' to '{destination_dir}'")
     copy_contents_of_directory(source_dir, destination_dir)
 
+    generate_pages_recursive("content", "template.html", "public")
    
 
 main()
